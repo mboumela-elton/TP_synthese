@@ -45,7 +45,7 @@ int enseash() {
         pid_t pid = fork();
         if (pid == 0) {
             // Processus enfant
-            char *args[] = {"", "-c", command, NULL};
+            char *args[] = {"/bin/sh", "-c", command, NULL};
             execvp(args[0], args);
             // Si exec échoue
             write(STDERR_FILENO, "Erreur d'exécution de la commande\n", 34);
