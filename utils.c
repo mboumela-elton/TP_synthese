@@ -8,7 +8,5 @@ void printMessage(char *message) {
 }
 
 ssize_t readCommandLine(char *command) {
-    int bytesRead = read(STDIN_FILENO, command, sizeof(command) - 1);
-    command[bytesRead - 1] = '\0';
-    return bytesRead;
+    return read(STDIN_FILENO, command, sizeof(command) - 1);
 }
