@@ -22,7 +22,6 @@
 
 int enseash() {
     char command[256];
-    int status;
 
     printMessage(WELCOME_MESSAGE);
     printMessage(EXIT_MESSAGE);
@@ -35,10 +34,12 @@ int enseash() {
         if (bytes_read <= 0) {
             break;
         }
+
+        // Suppression du caractère de nouvelle ligne
         command[bytes_read - 1] = '\0';
 
         // Vérification de la commande 'exit'
-        if (strcmp(command, EXIT) != 0) {
+        if (strcmp(command, EXIT) == 0) {
             break;
         }
 
