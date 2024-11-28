@@ -8,9 +8,9 @@
 //     while (1)
 //     {
 //       write(STDOUT_FILENO, welcome_msg, strlen(welcome_msg));
-      
+
 //     }
-    
+
 // }
 
 #include <unistd.h>
@@ -19,6 +19,7 @@
 
 #include "utils.c"
 #include "constant.c"
+
 
 int enseash() {
     char command[256];
@@ -31,9 +32,6 @@ int enseash() {
 
         // Lecture de la commande entrée par l'utilisateur
         int bytes_read = readCommandLine(command);
-        if (bytes_read <= 0) {
-            break;
-        }
 
         // Suppression du caractère de nouvelle ligne
         command[bytes_read - 1] = '\0';
@@ -47,7 +45,8 @@ int enseash() {
         pid_t pid = fork();
         if (pid == 0) {
             // Processus enfant
-            execlp(command, command, (char *)NULL);
+            char *args[] = {"", "-c", command, NULL};
+            execvp(args[0], args);
             // Si exec échoue
             write(STDERR_FILENO, "Erreur d'exécution de la commande\n", 34);
             _exit(1);
