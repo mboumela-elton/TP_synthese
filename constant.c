@@ -4,8 +4,7 @@
 #define EXIT "exit"
 
 // messages
-#define WELCOME_MESSAGE "Welcome to the ENSEA Shell.\n"
-#define EXIT_MESSAGE "To exit, type 'exit'.\n"
+#define WELCOME_MESSAGE "Welcome to the ENSEA Shell.\nTo exit, type 'exit'.\n"
 #define ENSEASH "enseash % "
 #define GOODBYE_MESSAGE "Bye bye...\n"
 #define PROCESS_ERROR "Process creation error\n"

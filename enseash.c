@@ -10,7 +10,6 @@ int enseash()
   char command[256];
 
   printMessage(WELCOME_MESSAGE);
-  printMessage(EXIT_MESSAGE);
 
   while (1)
   {
@@ -24,7 +23,7 @@ int enseash()
 
     if (bytes_read <= 0)
     {
-      continue;
+      break;
     }
 
     // Check for the 'exit' command
@@ -32,26 +31,8 @@ int enseash()
     {
       break;
     }
+    execSingleCommand(command);
 
-    // Create a child process to execute the command
-    pid_t pid = fork();
-    if (pid == 0)
-    {
-      // Child process
-      execlp(command, command, NULL);
-      // If exec fails
-      printMessage(COMMAND_ERROR);
-      _exit(1);
-    }
-    else if (pid > 0)
-    {
-      // Parent process
-      wait(NULL);
-    }
-    else
-    {
-      printMessage(PROCESS_ERROR);
-    }
   }
 
   printMessage(GOODBYE_MESSAGE);
