@@ -90,26 +90,34 @@ void execSingleCommand(char *command)
             i++;
             args[i] = strtok(NULL, " ");
         }
-        // Check for redirection operators
-        for (int j = 0; j < i; j++)
-        {
-            if (strcmp(args[j], ">") == 0)
-            {
-                int fd = open(args[j + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-                dup2(fd, STDOUT_FILENO);
-                close(fd);
-                args[j] = NULL;
-                break;
-            }
-            else if (strcmp(args[j], "<") == 0)
-            {
-                int fd = open(args[j + 1], O_RDONLY);
-                dup2(fd, STDIN_FILENO);
-                close(fd);
-                args[j] = NULL;
-                break;
-            }
-        }
+        execvp(args[0], args);
+        // int i = 0;
+        // args[i] = strtok(command, " ");
+        // while (args[i] != NULL)
+        // {
+        //     i++;
+        //     args[i] = strtok(NULL, " ");
+        // }
+        // // Check for redirection operators
+        // for (int j = 0; j < i; j++)
+        // {
+        //     if (strcmp(args[j], ">") == 0)
+        //     {
+        //         int fd = open(args[j + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        //         dup2(fd, STDOUT_FILENO);
+        //         close(fd);
+        //         args[j] = NULL;
+        //         break;
+        //     }
+        //     else if (strcmp(args[j], "<") == 0)
+        //     {
+        //         int fd = open(args[j + 1], O_RDONLY);
+        //         dup2(fd, STDIN_FILENO);
+        //         close(fd);
+        //         args[j] = NULL;
+        //         break;
+        //     }
+        // }
 
         execvp(args[0], args);
         printMessage(COMMAND_ERROR);
