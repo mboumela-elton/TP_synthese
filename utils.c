@@ -59,6 +59,14 @@ void intToStr(int num, char *str)
     }
 }
 
+void prompt(int code, char *str, char *buffer, char *numStr)
+{
+    strcpy(buffer, str);
+    intToStr(code, numStr);
+    strcat(buffer, numStr);
+    strcat(buffer, "] % ");
+}
+
 void execSingleCommand(char *command)
 {
     int status;
@@ -77,19 +85,11 @@ void execSingleCommand(char *command)
 
         if (WIFEXITED(status))
         {
-            int exit_code = WEXITSTATUS(status);
-            strcpy(buffer, "enseash [exit:");
-            intToStr(exit_code, numStr);
-            strcat(buffer, numStr);
-            strcat(buffer, "] % ");
+            prompt(WEXITSTATUS(status), PROMPT_EXIT, buffer, numStr);
         }
         else if (WIFSIGNALED(status))
         {
-            int signal_num = WTERMSIG(status);
-            strcpy(buffer, "enseash [sign:");
-            intToStr(signal_num, numStr);
-            strcat(buffer, numStr);
-            strcat(buffer, "] % ");
+            prompt(WTERMSIG(status), PROMPT_SIGN, buffer, numStr);
         }
         printMessage(buffer);
     }

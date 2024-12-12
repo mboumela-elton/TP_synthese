@@ -10,7 +10,6 @@ int main()
     char command[256];
 
     printMessage(WELCOME_MESSAGE);
-    printMessage(ENSEASH);
 
     while (1)
     {
