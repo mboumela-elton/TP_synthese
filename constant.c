@@ -10,3 +10,7 @@
 #define COMMAND_ERROR "Command error\n"
 #define PROMPT_EXIT "enseash [exit:"
 #define PROMPT_SIGN "enseash [code:"
+
+// constants
+#define BUFFER_SIZE 256
+#define STR_SIZE 12

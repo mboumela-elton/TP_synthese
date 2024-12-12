@@ -1,6 +1,0 @@
-Makefile
-constant.c
-filetexte.txt
-main
-main.c
-utils.c

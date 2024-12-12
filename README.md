@@ -1,0 +1,3 @@
+# Ce que j'ai appris
+- L'importance de la fonction fork car dans mon code je l'utilise pour créer un nouveau processus fils similaire au processus père mais pouvant exécuter ses tâches de manière indépendante. C'est une excellente idée pour le multi-thread.
+- Les exceptions n'exitent pas en C mais nous gérons les eventuelles erreurs ce que retourne nos fonctions comme le fork() par exemple qui retourne -1 en cas d'erreur
